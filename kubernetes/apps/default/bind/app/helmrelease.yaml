@@ -66,6 +66,12 @@ spec:
       dns:
         enabled: true
         controller: main
+        externalIPs:
+          - 192.168.22.52
+          - fdd5:aa8:9535:22::52
+        externalTrafficPolicy: Cluster
+        ipFamilyPolicy: PreferDualStack
+        ipFamilies: [IPv4, IPv6]
         ports:
           dns-tcp:
             enabled: true
