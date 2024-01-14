@@ -30,9 +30,13 @@ spec:
       replicaCount: 1
       service:
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
-          io.cilium/lb-ipam-ips: "192.168.20.36,fdd5:aa8:9535:20::36"
+          external-dns.alpha.kubernetes.io/hostname: "network.${SECRET_DOMAIN}"
+        externalIPs:
+          - 192.168.20.36
+          - fdd5:aa8:9535:20::36
         externalTrafficPolicy: Cluster
+        ipFamilyPolicy: PreferDualStack
+        ipFamilies: [IPv4, IPv6]
       ingressClassResource:
         name: internal
         default: true

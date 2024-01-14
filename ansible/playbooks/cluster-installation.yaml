@@ -5,9 +5,9 @@
   gather_facts: true
   any_errors_fatal: true
   pre_tasks:
-    - name: Pausing for 5 seconds...
+    - name: Pausing for 2 seconds...
       ansible.builtin.pause:
-        seconds: 5
+        seconds: 2
   tasks:
     - name: Check if cluster is installed
       check_mode: false
@@ -45,17 +45,25 @@
         wait_sleep: 10
         wait_timeout: 360
       loop:
-        - { name: cilium, kind: HelmChart, namespace: kube-system }
+        - { name: tigera-operator, kind: HelmChart, namespace: tigera-operator }
         - { name: coredns, kind: HelmChart, namespace: kube-system }
+        - { name: default, kind: Installation }
 
     - name: Coredns
       when: k3s_primary_control_node
       ansible.builtin.include_tasks: tasks/coredns.yaml
 
-    - name: Cilium
-      when: k3s_primary_control_node
-      ansible.builtin.include_tasks: tasks/cilium.yaml
-
     - name: Cruft
       when: k3s_primary_control_node
       ansible.builtin.include_tasks: tasks/cruft.yaml
+
+    # - name: Helm controller
+    #   notify: Restart Kubernetes
+    #   when: k3s_control_node
+    #   ansible.builtin.include_tasks: tasks/helm_controller.yaml
+
+  handlers:
+    - name: Restart Kubernetes
+      ansible.builtin.systemd:
+        name: k3s
+        state: restarted

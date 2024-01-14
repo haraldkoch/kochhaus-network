@@ -1,10 +1,5 @@
 ---
-timezone: "America/Toronto"
-github_username: "haraldkoch"
-coredns_addr: "10.44.0.10"
-kubeapi_addr: "192.168.20.32"
-cluster_cidr: "10.40.0.0/16"
-service_cidr: "10.44.0.0/16"
+github_username: haraldkoch
+timezone: America/Toronto
+
 node_cidr: "192.168.20.0/24"
-cluster_cidr_v6: "fdd5:aa8:9535:40::/60"
-service_cidr_v6: "fdd5:aa8:9535:44::/112"
