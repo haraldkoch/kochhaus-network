@@ -80,11 +80,11 @@ spec:
         enabled: false
     persistence:
       config:
-        enabled: false
-        type: configmap
+        enabled: true
+        type: secret
         name: bind-secondary-config
         globalMounts:
-          - path: /etc/bind/named.conf
+          - path: /etc/bind/named.conf.local
             subPath: named.conf
             readOnly: true
       cache:
