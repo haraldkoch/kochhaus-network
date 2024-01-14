@@ -6,7 +6,7 @@ resources:
   - ./backube.yaml
   - ./bitnami.yaml
   - ./bjw-s.yaml
-  - ./cilium.yaml
+  - ./calico.yaml
   - ./coredns.yaml
   - ./csi-driver-nfs.yaml
   - ./descheduler.yaml
