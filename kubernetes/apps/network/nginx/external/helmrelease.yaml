@@ -35,8 +35,8 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "network.${SECRET_DOMAIN}"
         externalIPs:
-          - 192.168.20.37
-          - fdd5:aa8:9535:20::37
+          - 192.168.22.37
+          - fdd5:aa8:9535:22::37
         externalTrafficPolicy: Cluster
         ipFamilyPolicy: PreferDualStack
         ipFamilies: [IPv4, IPv6]
