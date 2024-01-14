@@ -15,7 +15,7 @@ spec:
         natOutgoing: Enabled
         nodeSelector: all()
       - blockSize: 116
-        cidr: "{{ k3s_server['cluster_cidr'].split(',')[1] }}"
+        cidr: "{{ k3s_server['cluster-cidr'].split(',')[1] }}"
         natOutgoing: Enabled
         nodeSelector: all()
   nodeMetricsPort: 9091
