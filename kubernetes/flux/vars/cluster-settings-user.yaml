@@ -6,3 +6,5 @@ metadata:
   namespace: flux-system
 data:
   SETTINGS_PLACEHOLDER: "settings-value"
+  BLOCKY_ADDR: "192.168.22.53"
+  BLOCKY_ADDR_V6: "fdd5:aa8:9535:22::53"

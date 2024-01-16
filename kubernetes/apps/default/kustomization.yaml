@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./bind/ks.yaml
+  - ./blocky/ks.yaml
