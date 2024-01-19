@@ -18,6 +18,7 @@ includes:
   flux: .taskfiles/Flux/Taskfile.yaml
   k0s: .taskfiles/K0s/Taskfile.yaml
   repo: .taskfiles/Repo/Taskfile.yaml
+  rook: .taskfiles/Rook/Taskfile.yaml
   sops: .taskfiles/Sops/Taskfile.yaml
   workstation: .taskfiles/Workstation/Taskfile.yaml
 
