@@ -27,8 +27,11 @@ spec:
   values:
     controllers:
       main:
+        type: statefulset
         replicas: 2
         strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           # FIXME: add named-exporter as a sidecar
           main:
@@ -64,6 +67,13 @@ spec:
           securityContext:
             fsGroup: 101
             fsGroupChangePolicy: "OnRootMismatch"
+        statefulset:
+          volumeClaimTemplates:
+            - name: cache
+              accessMode: ReadWriteOnce
+              size: 10Mi
+              globalMounts:
+                - path: /var/cache/bind
     service:
       main:
         enabled: false
@@ -97,10 +107,3 @@ spec:
           - path: /etc/bind/named.conf.local
             subPath: named.conf
             readOnly: true
-      cache:
-        enabled: true
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        size: 10Mi
-        globalMounts:
-          - path: /var/cache/bind
