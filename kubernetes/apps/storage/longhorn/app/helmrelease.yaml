@@ -43,8 +43,18 @@ spec:
       concurrentAutomaticEngineUpgradePerNodeLimit: 3
       defaultLonghornStaticStorageClass: longhorn
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
+      taintToleration: node-role.kubernetes.io/control-plane:NoSchedule
     ingress:
       enabled: true
       ingressClassName: internal
       host: longhorn.${SECRET_DOMAIN}
       tls: true
+    longhornDriver:
+      tolerations: &tolerations
+        - key: CriticalAddonsOnly
+          operator: Exists
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+    longhornManager:
+      tolerations: *tolerations
