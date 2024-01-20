@@ -60,6 +60,10 @@ spec:
                 memory: 128Mi
               limits:
                 memory: 192Mi
+        pod:
+          securityContext:
+            fsGroup: 101
+            fsGroupChangePolicy: "OnRootMismatch"
     service:
       main:
         enabled: false
@@ -94,8 +98,9 @@ spec:
             subPath: named.conf
             readOnly: true
       cache:
-        # FIXME
         enabled: true
-        type: emptyDir
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 10Mi
         globalMounts:
           - path: /var/cache/bind
